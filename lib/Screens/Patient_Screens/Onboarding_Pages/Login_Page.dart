@@ -1,4 +1,5 @@
 import 'package:ambulance_booking/Resources/resources.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/List_Clinics/List_Clinic.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Forget_Password/Forget.dart';
 
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Signin_Page/Signin_Page.dart';
@@ -123,9 +124,15 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 20),
-              MySignupButton(
-                title: "Login",
-                height: 56,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => ListClinic()));
+                },
+                child: MySignupButton(
+                  title: "Login",
+                  height: 56,
+                ),
               ),
               SizedBox(height: 30),
               Row(

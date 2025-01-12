@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import '../../../Resources/resources.dart';
 
+// Skeleton page
+
 class SkeletonPage extends StatelessWidget {
   final Widget child;
+  final Widget? myTopChild;
   final Icon? icon;
   final Color? iconColor;
   final Image? image;
@@ -22,7 +25,8 @@ class SkeletonPage extends StatelessWidget {
       this.top = 70,
       this.subtitle,
       this.isLeft = false,
-      this.sizedbox});
+      this.sizedbox,
+      this.myTopChild});
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +34,9 @@ class SkeletonPage extends StatelessWidget {
       color: pColor,
       child: Stack(
         children: [
+          Container(
+            child: myTopChild,
+          ),
           Positioned(
               top: top,
               child: Container(
@@ -60,16 +67,19 @@ class SkeletonPage extends StatelessWidget {
                                     )),
                               ],
                             )
-                          : SizedBox.shrink(),
+                          : SizedBox.fromSize(
+                              size: Size.zero,
+                            ),
                       SizedBox(height: sizedbox),
-                      Text(
-                        title ?? '',
-                        style: titleStyle,
-                      ),
-                      SizedBox(height: 5),
-                      Text(subtitle ?? '', style: subtitleStyle),
-                      subtitle != null
-                          ? SizedBox(height: 20)
+                      title != null && title!.isNotEmpty
+                          ? Text(
+                              title!,
+                              style: titleStyle,
+                            )
+                          : SizedBox.shrink(),
+                      title != null ? SizedBox(height: 5) : SizedBox.shrink(),
+                      subtitle != null && subtitle!.isNotEmpty
+                          ? Text(subtitle!, style: subtitleStyle)
                           : SizedBox.shrink(),
                       image != null
                           ? Image(height: 186, width: 256, image: image!.image)
@@ -86,6 +96,8 @@ class SkeletonPage extends StatelessWidget {
     );
   }
 }
+
+// Text Field
 
 class MyTextfield extends StatelessWidget {
   final double? height;
