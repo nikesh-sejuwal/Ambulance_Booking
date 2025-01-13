@@ -10,7 +10,8 @@ var backColor =
 var greyColor = Color(0xFF808080); //Color for grey text
 
 // For Login Pages
-var textfieldtitleColor = Color(0xFF7F909F); //Textfield background Color
+var textfieldtitleColor =
+    Color.fromARGB(255, 0, 0, 0); //Textfield background Color
 
 const textfieldColor = Color(0xFFF8F7FB);
 var lightGrey = Color(0xFF969AA8);

@@ -30,68 +30,74 @@ class SkeletonPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: pColor,
-      child: Stack(
-        children: [
-          Container(
-            child: myTopChild,
-          ),
-          Positioned(
-              top: top,
-              child: Container(
-                height: MediaQuery.of(context).size.height - 70,
+    return SingleChildScrollView(
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        color: pColor,
+        child: Stack(
+          children: [
+            Container(
+              child: myTopChild,
+            ),
+            Positioned(
+                top: top,
                 child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50),
-                      )),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      icon != null
-                          ? Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                    margin: EdgeInsets.only(top: 25, left: 10),
-                                    child: IconButton(
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                      icon: icon!,
-                                    )),
-                              ],
-                            )
-                          : SizedBox.fromSize(
-                              size: Size.zero,
-                            ),
-                      SizedBox(height: sizedbox),
-                      title != null && title!.isNotEmpty
-                          ? Text(
-                              title!,
-                              style: titleStyle,
-                            )
-                          : SizedBox.shrink(),
-                      title != null ? SizedBox(height: 5) : SizedBox.shrink(),
-                      subtitle != null && subtitle!.isNotEmpty
-                          ? Text(subtitle!, style: subtitleStyle)
-                          : SizedBox.shrink(),
-                      image != null
-                          ? Image(height: 186, width: 256, image: image!.image)
-                          : SizedBox.shrink(),
-                      Center(
-                        child: child,
-                      )
-                    ],
+                  height: MediaQuery.of(context).size.height - 70,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50),
+                        )),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        icon != null
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Container(
+                                      margin:
+                                          EdgeInsets.only(top: 25, left: 10),
+                                      child: IconButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        icon: icon!,
+                                      )),
+                                ],
+                              )
+                            : SizedBox.fromSize(
+                                size: Size.zero,
+                              ),
+                        SizedBox(height: sizedbox),
+                        title != null && title!.isNotEmpty
+                            ? Text(
+                                title!,
+                                style: titleStyle,
+                              )
+                            : SizedBox.shrink(),
+                        title != null ? SizedBox(height: 5) : SizedBox.shrink(),
+                        subtitle != null && subtitle!.isNotEmpty
+                            ? Text(subtitle!, style: subtitleStyle)
+                            : SizedBox.shrink(),
+                        image != null
+                            ? Image(
+                                height: 186, width: 256, image: image!.image)
+                            : SizedBox.shrink(),
+                        Center(
+                          child: child,
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ))
-        ],
+                ))
+          ],
+        ),
       ),
     );
   }
