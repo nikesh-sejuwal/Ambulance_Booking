@@ -1,4 +1,5 @@
 import 'package:ambulance_booking/Resources/resources.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/About_US/About_US.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -107,9 +108,15 @@ class FeedbackPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 30),
-                      MySignupButton(
-                        title: "Submit",
-                        height: 56,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => AboutUs()));
+                        },
+                        child: MySignupButton(
+                          title: "Submit",
+                          height: 56,
+                        ),
                       )
                     ],
                   ),
