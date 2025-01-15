@@ -1,5 +1,6 @@
 import 'package:ambulance_booking/Resources/resources.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Feedback/feedback.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Profile/Profile.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -71,7 +72,12 @@ class ListClinic extends StatelessWidget {
           ),
           child: Column(
             children: [
-              SingleClinic(),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => Profile()));
+                  },
+                  child: SingleClinic()),
               SizedBox(height: 25),
               SingleClinic(),
               SizedBox(height: 25),
