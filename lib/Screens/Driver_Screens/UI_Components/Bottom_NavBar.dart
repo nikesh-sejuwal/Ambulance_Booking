@@ -38,7 +38,7 @@ class BottomNavbar extends StatelessWidget {
         },
         index: 1,
         height: 60,
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
         color: pColor,
         items: [
           Icon(

@@ -1,5 +1,6 @@
 import 'package:ambulance_booking/Resources/resources.dart';
-import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/widget/stackSkeleton.dart';
+
 import 'package:flutter/material.dart';
 
 class AboutUs extends StatelessWidget {
@@ -8,55 +9,89 @@ class AboutUs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SkeletonPage(
-          top: 173,
-          myTopChild: Container(
-            margin: EdgeInsets.only(top: 72),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pop();
-                    },
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 35,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Text(
-                    "About Us",
-                    style: TextStyle(
-                      fontFamily: "Roboto",
-                      color: Colors.white,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                ],
+        body: Stackskeleton(
+      top: 80,
+      upperChild: Padding(
+        padding: const EdgeInsets.only(top: 70, left: 10),
+        child: Container(
+          width: MediaQuery.of(context).size.width * 0.9,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 28,
+                ),
               ),
+              Text(
+                'About Us',
+                style: TextStyle(
+                  fontFamily: "Roboto",
+                  fontSize: 24,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 15),
+            ],
+          ),
+        ),
+      ),
+      stackChild: Container(
+        margin: EdgeInsets.only(top: 135),
+        height: 116,
+        width: 116,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(width: 1, color: Colors.black),
+            boxShadow: [
+              BoxShadow(
+                  offset: Offset(0, 4),
+                  spreadRadius: 0,
+                  blurRadius: 4,
+                  color: Colors.black),
+            ],
+            borderRadius: BorderRadius.circular(100)),
+        child: Image(image: AssetImage('assets/images/logo1.png')),
+      ),
+      lowerChild: Column(
+        children: [
+          SizedBox(height: 95),
+          Padding(
+            padding: const EdgeInsets.only(left: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AboutBox(
+                  title: 'Vision Statement',
+                  subtitle:
+                      'Our vision is to be one of the leading dental clinic in the area, expanding our services to reach additional community members. We work to be trusted by patients, a valued partner in the community.',
+                ),
+              ],
             ),
           ),
-          child: Column(
-            children: [
-              Text("HELLLOOOO FROM ABOUT PAGE"),
-              AboutBox(
-                title: 'Vision Statement',
-                subtitle:
-                    'Our vision is to be one of the leading dental clinic in the area, expanding our services to reach additional community members. We work to be trusted by patients, a valued partner in the community.',
-              ),
-              AboutBox(
-                title: 'Mission Statement',
-                subtitle:
-                    'It is our mission to exceed expectations by providing exceptional dental care to our patients and at the same time, building relationships of trust with them.',
-              ),
-            ],
-          )),
-    );
+          SizedBox(height: 45),
+          Padding(
+            padding: const EdgeInsets.only(right: 24),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                AboutBox(
+                  title: 'Mission Statement',
+                  subtitle:
+                      'It is our mission to exceed expectations by providing exceptional dental care to our patients and at the same time, building relationships of trust with them.',
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
+    ));
   }
 }
 
