@@ -1,6 +1,8 @@
 import 'package:ambulance_booking/Resources/resources.dart';
+import 'package:ambulance_booking/Screens/Driver_Screens/UI_Components/MenuButton.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Feedback/feedback.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Profile/Profile.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/widget/My_Drawer.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -31,15 +33,7 @@ class ListClinic extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    IconButton(
-                        onPressed: () => Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => FeedbackPage())),
-                        icon: Icon(
-                          Icons.menu,
-                          color: Colors.white,
-                          size: 28,
-                        ))
+                    MyDrawer()
                   ],
                 ),
                 MyTextfield(

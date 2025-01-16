@@ -1,4 +1,3 @@
-import 'package:ambulance_booking/Screens/Driver_Screens/UI_Components/My_Alert_Dialogue.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
 import 'package:flutter/material.dart';
 
@@ -33,7 +32,9 @@ class Profile extends StatelessWidget {
           child: Row(
             children: [
               IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: Icon(
                     Icons.arrow_back,
                     color: Colors.white,
