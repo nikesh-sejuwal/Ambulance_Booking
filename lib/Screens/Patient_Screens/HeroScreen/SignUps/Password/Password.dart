@@ -1,8 +1,9 @@
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
-import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../Resources/resources.dart';
+import '../../../widget/Custom_TextField.dart';
+import '../../../widget/textfield.dart';
 
 class Password extends StatelessWidget {
   const Password({super.key});
@@ -36,29 +37,11 @@ class Password extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 15),
-                    MyTextfield(
-                        width: MediaQuery.of(context).size.width * 0.61,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 8),
-                            Icon(Icons.phone_android_outlined,
-                                color: pColor, size: 20),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.5,
-                              child: TextField(
-                                maxLines: 1,
-                                keyboardType: TextInputType.phone,
-                                style: textfieldStyle,
-                                decoration: InputDecoration(
-                                    hintText: 'Enter your mobile number',
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    border: InputBorder.none),
-                              ),
-                            ),
-                          ],
-                        )),
+                    CustomTextField(
+                        topWidth: 0.61,
+                        secondWidth: 0.5,
+                        hintText: "Enter your mobile number",
+                        icon: Icons.phone_android)
                   ],
                 ),
                 SizedBox(height: 20),
@@ -67,80 +50,22 @@ class Password extends StatelessWidget {
                   style: headerStyle,
                 ),
                 SizedBox(height: 15),
-                MyTextfield(
-                    width: MediaQuery.of(context).size.width * 0.79,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 8),
-                        Icon(Icons.lock_outline, color: pColor, size: 20),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.59,
-                          child: TextField(
-                            obscureText: true,
-                            style: textfieldStyle,
-                            scrollPadding: EdgeInsets.all(100),
-                            decoration: InputDecoration(
-                                hintText: 'Enter your password',
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.remove_red_eye_rounded,
-                                color: pColor,
-                                size: 20,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    )),
+                CustomTextField(
+                  hintText: 'Enter your password',
+                  icon: Icons.lock_outline,
+                  obscureText: true,
+                ),
                 SizedBox(height: 20),
                 Text(
                   'Confirm Password',
                   style: headerStyle,
                 ),
                 SizedBox(height: 15),
-                MyTextfield(
-                    width: MediaQuery.of(context).size.width * 0.79,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 8),
-                        Icon(Icons.lock_outline, color: pColor, size: 20),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.59,
-                          child: TextField(
-                            obscureText: true,
-                            style: textfieldStyle,
-                            scrollPadding: EdgeInsets.all(100),
-                            decoration: InputDecoration(
-                                hintText: 'Enter your password',
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.remove_red_eye_rounded,
-                                color: pColor,
-                                size: 20,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    )),
+                CustomTextField(
+                  hintText: 'Enter your password',
+                  icon: Icons.lock_outline,
+                  obscureText: true,
+                ),
                 SizedBox(height: 45),
                 GestureDetector(
                     onTap: () {

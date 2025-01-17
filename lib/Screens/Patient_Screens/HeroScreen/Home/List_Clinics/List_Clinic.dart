@@ -66,12 +66,7 @@ class ListClinic extends StatelessWidget {
           ),
           child: Column(
             children: [
-              GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => Profile()));
-                  },
-                  child: SingleClinic()),
+              SingleClinic(),
               SizedBox(height: 25),
               SingleClinic(),
               SizedBox(height: 25),

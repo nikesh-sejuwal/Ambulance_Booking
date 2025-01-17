@@ -108,15 +108,9 @@ class FeedbackPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 30),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => AboutUs()));
-                        },
-                        child: MySignupButton(
-                          title: "Submit",
-                          height: 56,
-                        ),
+                      MySignupButton(
+                        title: "Submit",
+                        height: 56,
                       )
                     ],
                   ),
