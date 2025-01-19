@@ -1,11 +1,14 @@
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/List_Clinics/List_Clinic.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../Resources/resources.dart';
 import '../../../widget/stackSkeleton.dart';
 
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final bool? isEdit;
+  const Profile({super.key, this.isEdit = false});
 
   @override
   Widget build(BuildContext context) {
@@ -49,12 +52,19 @@ class Profile extends StatelessWidget {
         lowerChild: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 90),
+            SizedBox(height: 60),
+            (isEdit == true)
+                ? Center(
+                    child: Text(
+                    "Change Picture",
+                    style: TextStyle(color: Colors.grey.shade600),
+                  ))
+                : Text(''),
             Expanded(
               child: ListView(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 children: [
-                  SizedBox(height: 5),
+                  SizedBox(height: 35),
                   TextField(
                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                     cursorColor: Colors.black,
@@ -139,7 +149,22 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 50),
-                  ProfileBtns(),
+                  (isEdit == false)
+                      ? ProfileBtns()
+                      : GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => ListClinic()));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                backgroundColor: Colors.green,
+                                content: Text("Updated Successfully")));
+                          },
+                          child: MySignupButton(
+                            title: "Update",
+                            height: 56,
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -161,29 +186,36 @@ class ProfileBtns extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: 166.5,
-            height: 57,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(width: 5),
-                  Text(
-                    'Edit Profile',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Roboto',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(width: 18),
-                  Icon(Icons.note_alt_outlined, color: Colors.white, size: 30)
-                ],
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => Profile(isEdit: true),
+              ));
+            },
+            child: Container(
+              width: 166.5,
+              height: 57,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(width: 5),
+                    Text(
+                      'Edit Profile',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Roboto',
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    SizedBox(width: 18),
+                    Icon(Icons.note_alt_outlined, color: Colors.white, size: 30)
+                  ],
+                ),
               ),
             ),
           ),

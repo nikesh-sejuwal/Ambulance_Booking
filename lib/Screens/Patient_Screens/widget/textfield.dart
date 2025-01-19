@@ -152,8 +152,12 @@ class MySignupButton extends StatelessWidget {
   final double? height;
   final double? width;
 
-  const MySignupButton(
-      {super.key, required this.title, this.height, this.width});
+  const MySignupButton({
+    super.key,
+    required this.title,
+    this.height,
+    this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -165,10 +169,11 @@ class MySignupButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: [
             BoxShadow(
-                blurRadius: 10,
-                offset: Offset(4, 10),
-                spreadRadius: 0,
-                color: greyColor)
+              blurRadius: 10,
+              offset: Offset(4, 10),
+              spreadRadius: 0,
+              color: greyColor,
+            )
           ]),
       child: Center(
           child: Text(

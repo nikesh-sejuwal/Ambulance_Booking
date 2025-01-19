@@ -1,4 +1,3 @@
-import 'package:ambulance_booking/Resources/resources.dart';
 import 'package:ambulance_booking/Route/app.route.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Onboarding_Screen.dart';
 import 'package:flutter/material.dart';
