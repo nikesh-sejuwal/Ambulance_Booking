@@ -56,3 +56,47 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+
+class Custom_Profile_Textfield extends StatelessWidget {
+  final String hintText, labelText;
+  final bool isIcon, isPhone;
+  const Custom_Profile_Textfield({
+    super.key,
+    required this.hintText,
+    required this.labelText,
+    this.isIcon = false,
+    this.isPhone = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var borderStyle = OutlineInputBorder(
+        borderSide: BorderSide(width: 1, color: Colors.black45),
+        borderRadius: BorderRadius.circular(20));
+    var hintstyle = TextStyle(fontSize: 16, color: Colors.grey);
+    return TextField(
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+      cursorColor: Colors.black,
+      obscureText: isIcon == true ? true : false,
+      keyboardType: isPhone == true ? TextInputType.phone : TextInputType.name,
+      decoration: InputDecoration(
+        border: borderStyle,
+        enabledBorder: borderStyle,
+        focusedBorder: borderStyle,
+        hintText: hintText,
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        hintStyle: hintstyle,
+        labelStyle: TextStyle(
+            fontSize: 16, color: Colors.black, fontWeight: FontWeight.w400),
+        label: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(labelText),
+            SizedBox(width: 5),
+            isIcon == true ? Icon(Icons.lock, size: 16) : SizedBox.shrink(),
+          ],
+        ),
+      ),
+    );
+  }
+}

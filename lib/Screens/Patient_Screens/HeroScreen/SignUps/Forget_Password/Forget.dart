@@ -1,6 +1,7 @@
 import 'package:ambulance_booking/Resources/resources.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/OTP_Verification/verification.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Components/OnBoardingData.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/widget/Custom_TextField.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -42,29 +43,13 @@ class Forget extends StatelessWidget {
                         ),
                       ),
                       SizedBox(width: 10),
-                      MyTextfield(
-                          width: MediaQuery.of(context).size.width * 0.64,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(width: 8),
-                              Icon(Icons.phone_android_outlined,
-                                  color: pColor, size: 20),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.5,
-                                child: TextField(
-                                  maxLines: 1,
-                                  keyboardType: TextInputType.phone,
-                                  style: textfieldStyle,
-                                  decoration: InputDecoration(
-                                      hintText: 'Enter your mobile number',
-                                      contentPadding:
-                                          EdgeInsets.symmetric(horizontal: 10),
-                                      border: InputBorder.none),
-                                ),
-                              ),
-                            ],
-                          ))
+                      CustomTextField(
+                        hintText: "Enter your mobile number",
+                        icon: Icons.phone_android,
+                        keyboardType: TextInputType.phone,
+                        topWidth: 0.64,
+                        secondWidth: 0.54,
+                      )
                     ],
                   ),
                   SizedBox(height: 45),

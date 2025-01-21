@@ -40,6 +40,7 @@ class Password extends StatelessWidget {
                     CustomTextField(
                         topWidth: 0.61,
                         secondWidth: 0.5,
+                        keyboardType: TextInputType.phone,
                         hintText: "Enter your mobile number",
                         icon: Icons.phone_android)
                   ],

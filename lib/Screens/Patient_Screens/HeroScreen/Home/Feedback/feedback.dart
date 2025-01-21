@@ -1,4 +1,5 @@
 import 'package:ambulance_booking/Resources/resources.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/List_Clinics/List_Clinic.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -107,9 +108,19 @@ class FeedbackPage extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 30),
-                      MySignupButton(
-                        title: "Submit",
-                        height: 56,
+                      GestureDetector(
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Text("Thank you for your feedback")));
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (context) => ListClinic()));
+                        },
+                        child: MySignupButton(
+                          title: "Submit",
+                          height: 56,
+                        ),
                       )
                     ],
                   ),

@@ -4,6 +4,7 @@ import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/For
 
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Signin_Page/Signin_Page.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Components/OnBoardingData.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/widget/Custom_TextField.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
@@ -40,29 +41,13 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 10),
-                    MyTextfield(
-                        width: MediaQuery.of(context).size.width * 0.64,
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            SizedBox(width: 8),
-                            Icon(Icons.phone_android_outlined,
-                                color: pColor, size: 20),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.54,
-                              child: TextField(
-                                maxLines: 1,
-                                keyboardType: TextInputType.phone,
-                                style: textfieldStyle,
-                                decoration: InputDecoration(
-                                    hintText: 'Enter your mobile number',
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 10),
-                                    border: InputBorder.none),
-                              ),
-                            ),
-                          ],
-                        ))
+                    CustomTextField(
+                      hintText: "Enter your mobile number",
+                      icon: Icons.phone_android,
+                      topWidth: 0.64,
+                      keyboardType: TextInputType.phone,
+                      secondWidth: 0.54,
+                    )
                   ],
                 ),
                 SizedBox(height: 25),
@@ -71,40 +56,11 @@ class LoginPage extends StatelessWidget {
                   style: headerStyle,
                 ),
                 SizedBox(height: 10),
-                MyTextfield(
-                    width: MediaQuery.of(context).size.width * 0.79,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 8),
-                        Icon(Icons.lock_outline, color: pColor, size: 20),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.55,
-                          child: TextField(
-                            obscureText: true,
-                            style: textfieldStyle,
-                            scrollPadding: EdgeInsets.all(100),
-                            decoration: InputDecoration(
-                                hintText: 'Enter your password',
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            IconButton(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.remove_red_eye_rounded,
-                                color: pColor,
-                                size: 20,
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    )),
+                CustomTextField(
+                  hintText: "Enter your password",
+                  icon: Icons.lock,
+                  obscureText: true,
+                ),
                 SizedBox(height: 25),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
