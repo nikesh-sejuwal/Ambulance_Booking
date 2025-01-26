@@ -6,6 +6,7 @@ import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Sig
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Components/OnBoardingData.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/Custom_TextField.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
@@ -68,7 +69,7 @@ class LoginPage extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
-                            MaterialPageRoute(builder: (context) => Forget()));
+                            CupertinoPageRoute(builder: (context) => Forget()));
                       },
                       child: Text(
                         "Forgot password",
@@ -85,7 +86,7 @@ class LoginPage extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => ListClinic()));
+                        CupertinoPageRoute(builder: (context) => ListClinic()));
                   },
                   child: MySignupButton(
                     title: "Login",
@@ -104,8 +105,9 @@ class LoginPage extends StatelessWidget {
                     SizedBox(width: 5),
                     InkWell(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => SigninPage()));
+                        Navigator.of(context).pushReplacement(
+                            CupertinoPageRoute(
+                                builder: (context) => SigninPage()));
                       },
                       child: Text(
                         'Sign Up here',

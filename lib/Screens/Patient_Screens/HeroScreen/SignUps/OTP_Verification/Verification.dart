@@ -1,6 +1,7 @@
 import 'package:ambulance_booking/Resources/resources.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Password/password.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Verification extends StatelessWidget {
@@ -48,7 +49,7 @@ class Verification extends StatelessWidget {
                 GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => Password()));
+                          CupertinoPageRoute(builder: (context) => Password()));
                     },
                     child: MySignupButton(title: 'Submit', height: 56)),
                 SizedBox(height: 25),

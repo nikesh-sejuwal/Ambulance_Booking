@@ -4,7 +4,7 @@ import '../../../Resources/resources.dart';
 
 // Skeleton page
 
-class SkeletonPage extends StatelessWidget {
+class SkeletonPage extends StatefulWidget {
   final Widget child;
   final Widget? myTopChild;
   final Icon? icon;
@@ -29,6 +29,29 @@ class SkeletonPage extends StatelessWidget {
       this.myTopChild});
 
   @override
+  State<SkeletonPage> createState() => _SkeletonPageState();
+}
+
+class _SkeletonPageState extends State<SkeletonPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<Offset> slideDownAnimation;
+  late Animation<Offset> slideRightAnimation;
+  late Animation<double> fadeinAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 700));
+    slideDownAnimation = Tween<Offset>(begin: Offset(0, -0.4), end: Offset.zero)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+    fadeinAnimation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.ease));
+    controller.forward();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
@@ -38,10 +61,10 @@ class SkeletonPage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              child: myTopChild,
+              child: widget.myTopChild,
             ),
             Positioned(
-                top: top,
+                top: widget.top,
                 child: Container(
                   height: MediaQuery.of(context).size.height - 70,
                   child: Container(
@@ -56,7 +79,7 @@ class SkeletonPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        icon != null
+                        widget.icon != null
                             ? Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
@@ -67,30 +90,43 @@ class SkeletonPage extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        icon: icon!,
+                                        icon: widget.icon!,
                                       )),
                                 ],
                               )
                             : SizedBox.fromSize(
                                 size: Size.zero,
                               ),
-                        SizedBox(height: sizedbox),
-                        title != null && title!.isNotEmpty
-                            ? Text(
-                                title!,
-                                style: titleStyle,
+                        SizedBox(height: widget.sizedbox),
+                        widget.title != null && widget.title!.isNotEmpty
+                            ? SlideTransition(
+                                position: slideDownAnimation,
+                                child: Text(
+                                  widget.title!,
+                                  style: titleStyle,
+                                ),
                               )
                             : SizedBox.shrink(),
-                        title != null ? SizedBox(height: 5) : SizedBox.shrink(),
-                        subtitle != null && subtitle!.isNotEmpty
-                            ? Text(subtitle!, style: subtitleStyle)
+                        widget.title != null
+                            ? SizedBox(height: 5)
                             : SizedBox.shrink(),
-                        image != null
-                            ? Image(
-                                height: 186, width: 256, image: image!.image)
+                        widget.subtitle != null && widget.subtitle!.isNotEmpty
+                            ? SlideTransition(
+                                position: slideDownAnimation,
+                                child: Text(widget.subtitle!,
+                                    style: subtitleStyle))
+                            : SizedBox.shrink(),
+                        widget.image != null
+                            ? FadeTransition(
+                                opacity: fadeinAnimation,
+                                child: Image(
+                                    height: 186,
+                                    width: 256,
+                                    image: widget.image!.image),
+                              )
                             : SizedBox.shrink(),
                         Center(
-                          child: child,
+                          child: widget.child,
                         )
                       ],
                     ),
@@ -105,7 +141,7 @@ class SkeletonPage extends StatelessWidget {
 
 // Text Field
 
-class MyTextfield extends StatelessWidget {
+class MyTextfield extends StatefulWidget {
   final double? height;
   final double width;
   final Color? color;
@@ -121,29 +157,52 @@ class MyTextfield extends StatelessWidget {
       this.color = textfieldColor});
 
   @override
+  State<MyTextfield> createState() => _MyTextfieldState();
+}
+
+class _MyTextfieldState extends State<MyTextfield>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<double> fadeinAnimation;
+  late Animation<Offset> slideRightAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+    fadeinAnimation = Tween<double>(begin: 0, end: 1)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+    controller.forward();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-        width: width,
-        height: height,
-        decoration: BoxDecoration(
-            color: color,
-            border: isShadow == true
-                ? Border()
-                : Border.all(color: lightGrey, width: 1),
-            borderRadius: isShadow == true
-                ? BorderRadius.circular(10)
-                : BorderRadius.circular(20),
-            boxShadow: [
-              isShadow == true
-                  ? BoxShadow(
-                      spreadRadius: 0,
-                      blurRadius: 4,
-                      offset: Offset(0, 4),
-                      color: Colors.grey,
-                    )
-                  : BoxShadow(),
-            ]),
-        child: child);
+    return FadeTransition(
+      opacity: fadeinAnimation,
+      child: Container(
+          width: widget.width,
+          height: widget.height,
+          decoration: BoxDecoration(
+              color: widget.color,
+              border: widget.isShadow == true
+                  ? Border()
+                  : Border.all(color: lightGrey, width: 1),
+              borderRadius: widget.isShadow == true
+                  ? BorderRadius.circular(10)
+                  : BorderRadius.circular(20),
+              boxShadow: [
+                widget.isShadow == true
+                    ? BoxShadow(
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: Offset(0, 4),
+                        color: Colors.grey,
+                      )
+                    : BoxShadow(),
+              ]),
+          child: widget.child),
+    );
   }
 }
 

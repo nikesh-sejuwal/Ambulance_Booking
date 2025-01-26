@@ -2,6 +2,7 @@ import 'package:ambulance_booking/Resources/resources.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/Signin_Page/Signin_Page.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Components/OnBoardingData.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -148,7 +149,7 @@ class OnBoardingPage extends StatelessWidget {
                         children: [
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.of(context).push(CupertinoPageRoute(
                                   builder: (context) => LoginPage()));
                             },
                             child: BoxDesign(
@@ -161,7 +162,7 @@ class OnBoardingPage extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                              Navigator.of(context).push(CupertinoPageRoute(
                                   builder: (context) => SigninPage()));
                             },
                             child: BoxDesign(

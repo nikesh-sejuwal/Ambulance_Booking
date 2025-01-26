@@ -4,6 +4,7 @@ import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Feedba
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/List_Clinics/List_Clinic.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/Profile/Profile.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -19,26 +20,26 @@ class _MyDrawerState extends State<MyDrawer> {
     switch (value) {
       case 'Option 1':
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ListClinic()));
+            .push(CupertinoPageRoute(builder: (context) => ListClinic()));
         break;
       case 'Option 2':
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => AboutUs()));
+            .push(CupertinoPageRoute(builder: (context) => AboutUs()));
         break;
       case 'Option 3':
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => Profile()));
+            .push(CupertinoPageRoute(builder: (context) => Profile()));
         break;
       case 'Option 4':
         print('Option 4 clicked');
         break;
       case 'Option 5':
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => FeedbackPage()));
+            .push(CupertinoPageRoute(builder: (context) => FeedbackPage()));
         break;
       case 'Option 6':
         Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => LoginPage()));
+            CupertinoPageRoute(builder: (context) => LoginPage()));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             backgroundColor: darkRed, content: Text("Logout Successfully")));
         break;

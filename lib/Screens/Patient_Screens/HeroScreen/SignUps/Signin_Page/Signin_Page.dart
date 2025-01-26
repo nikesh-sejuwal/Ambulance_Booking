@@ -3,6 +3,7 @@ import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Compo
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/Custom_TextField.dart';
 
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../Resources/resources.dart';
@@ -53,7 +54,7 @@ class SigninPage extends StatelessWidget {
               SizedBox(height: 45),
               GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(CupertinoPageRoute(
                         builder: (context) => Verification()));
                   },
                   child: MySignupButton(title: "Next", height: 56))

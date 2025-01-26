@@ -1,4 +1,5 @@
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Login_Page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../Resources/resources.dart';
@@ -70,8 +71,8 @@ class Password extends StatelessWidget {
                 SizedBox(height: 45),
                 GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => LoginPage()));
+                      Navigator.of(context).pushReplacement(CupertinoPageRoute(
+                          builder: (context) => LoginPage()));
                     },
                     child: MySignupButton(title: "Sign up", height: 56))
               ],
