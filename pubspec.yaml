@@ -65,6 +65,7 @@ flutter:
       - assets/images/googleMap.png
       - assets/images/Avatar.png
       - assets/images/logo1.png
+      - assets/images/ambulance.png
       - assets/images/OnBoarding/
    #   - images/a_dot_ham.jpeg
 

@@ -1,81 +1,127 @@
 import 'package:ambulance_booking/Resources/resources.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/Home/List_Clinics/Components/List_ambulance.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/My_Drawer.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
 import 'package:flutter/material.dart';
 
-class ListClinic extends StatelessWidget {
+class ListClinic extends StatefulWidget {
   const ListClinic({super.key});
+
+  @override
+  State<ListClinic> createState() => _ListClinicState();
+}
+
+class _ListClinicState extends State<ListClinic> {
+  bool _showContainer = false;
+
+  void toggleContainer(bool value) {
+    setState(() {
+      _showContainer = value;
+    });
+  }
+
+  void _hideContainer() {
+    setState(() {
+      _showContainer = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SkeletonPage(
-          top: 188,
-          sizedbox: 30,
-          myTopChild: Container(
-            margin: EdgeInsets.only(top: 65, left: 28, right: 28),
-            width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Lists of Clinics",
-                      style: TextStyle(
-                        fontFamily: "Roboto",
-                        color: Colors.white,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    MyDrawer()
-                  ],
-                ),
-                MyTextfield(
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    height: 51,
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(width: 10),
-                        Icon(
-                          Icons.search,
-                          color: pColor,
-                          size: 24,
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.7,
-                          child: TextField(
-                            style: textfieldStyle,
-                            decoration: InputDecoration(
-                                hintText: 'Search Clinic',
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                border: InputBorder.none),
+      body: Stack(
+        children: [
+          GestureDetector(
+            onTap: _hideContainer,
+            child: SkeletonPage(
+                top: 188,
+                sizedbox: 30,
+                myTopChild: Container(
+                  margin: EdgeInsets.only(top: 65, left: 28, right: 28),
+                  width: MediaQuery.of(context).size.width,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Lists of Clinics",
+                            style: TextStyle(
+                              fontFamily: "Roboto",
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
-                        ),
-                      ],
-                    ))
-              ],
-            ),
+                          MyDrawer()
+                        ],
+                      ),
+                      MyTextfield(
+                          width: MediaQuery.of(context).size.width * 0.8,
+                          height: 51,
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(width: 10),
+                              Icon(
+                                Icons.search,
+                                color: pColor,
+                                size: 24,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: TextField(
+                                  style: textfieldStyle,
+                                  decoration: InputDecoration(
+                                      hintText: 'Search Clinic',
+                                      contentPadding:
+                                          EdgeInsets.symmetric(horizontal: 10),
+                                      border: InputBorder.none),
+                                ),
+                              ),
+                            ],
+                          ))
+                    ],
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    SingleClinic(onToggle: toggleContainer),
+                    SizedBox(height: 25),
+                    SingleClinic(
+                      onToggle: toggleContainer,
+                    ),
+                    SizedBox(height: 25),
+                    SingleClinic(onToggle: toggleContainer),
+                  ],
+                )),
           ),
-          child: Column(
-            children: [
-              SingleClinic(),
-              SizedBox(height: 25),
-              SingleClinic(),
-              SizedBox(height: 25),
-              SingleClinic(),
-            ],
-          )),
+          _showContainer == true
+              ? (Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.6,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: darkRed, width: 2),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50)),
+                    ),
+                    child: ListAmbulance(),
+                  )))
+              : SizedBox.shrink()
+        ],
+      ),
     );
   }
 }
 
 class SingleClinic extends StatelessWidget {
-  const SingleClinic({super.key});
+  final Function(bool) onToggle;
+  SingleClinic({super.key, required this.onToggle});
 
   @override
   Widget build(BuildContext context) {
@@ -163,10 +209,18 @@ class SingleClinic extends StatelessWidget {
                         indent: 5,
                         endIndent: 5,
                       ),
-                      Icon(
-                        Icons.car_rental,
-                        color: pColor,
-                        size: 25,
+                      InkWell(
+                        onTap: () {
+                          onToggle(true);
+                        },
+                        onTapCancel: () {
+                          onToggle(false);
+                        },
+                        child: Icon(
+                          Icons.car_rental,
+                          color: pColor,
+                          size: 25,
+                        ),
                       ),
                     ],
                   ),

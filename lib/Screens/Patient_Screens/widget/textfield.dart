@@ -206,7 +206,7 @@ class _MyTextfieldState extends State<MyTextfield>
   }
 }
 
-class MySignupButton extends StatelessWidget {
+class MySignupButton extends StatefulWidget {
   final String title;
   final double? height;
   final double? width;
@@ -219,27 +219,49 @@ class MySignupButton extends StatelessWidget {
   });
 
   @override
+  State<MySignupButton> createState() => _MySignupButtonState();
+}
+
+class _MySignupButtonState extends State<MySignupButton>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<Offset> slideAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    slideAnimation = Tween<Offset>(begin: Offset(-0.2, 0), end: Offset.zero)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+    controller.forward();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-          color: pColor,
-          borderRadius: BorderRadius.circular(15),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 10,
-              offset: Offset(4, 10),
-              spreadRadius: 0,
-              color: greyColor,
-            )
-          ]),
-      child: Center(
-          child: Text(
-        title,
-        style: TextStyle(
-            fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
-      )),
+    return SlideTransition(
+      position: slideAnimation,
+      child: Container(
+        height: widget.height,
+        width: widget.width,
+        decoration: BoxDecoration(
+            color: pColor,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                blurRadius: 10,
+                offset: Offset(4, 10),
+                spreadRadius: 0,
+                color: greyColor,
+              )
+            ]),
+        child: Center(
+            child: Text(
+          widget.title,
+          style: TextStyle(
+              fontSize: 16, fontWeight: FontWeight.w700, color: Colors.white),
+        )),
+      ),
     );
   }
 }

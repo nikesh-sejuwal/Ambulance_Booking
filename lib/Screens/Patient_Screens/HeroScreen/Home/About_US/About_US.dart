@@ -3,8 +3,30 @@ import 'package:ambulance_booking/Screens/Patient_Screens/widget/stackSkeleton.d
 
 import 'package:flutter/material.dart';
 
-class AboutUs extends StatelessWidget {
+class AboutUs extends StatefulWidget {
   const AboutUs({super.key});
+
+  @override
+  State<AboutUs> createState() => _AboutUsState();
+}
+
+class _AboutUsState extends State<AboutUs> with TickerProviderStateMixin {
+  late AnimationController controller;
+  late Animation<Offset> slideLeftAnimation;
+  late Animation<Offset> slideRightAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 400));
+    slideRightAnimation =
+        Tween<Offset>(begin: Offset(-0.2, 0), end: Offset.zero)
+            .animate(CurvedAnimation(parent: controller, curve: Curves.easeIn));
+    slideLeftAnimation = Tween<Offset>(begin: Offset(0.2, 0), end: Offset.zero)
+        .animate(CurvedAnimation(parent: controller, curve: Curves.easeInOut));
+    controller.forward();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,10 +89,13 @@ class AboutUs extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                AboutBox(
-                  title: 'Vision Statement',
-                  subtitle:
-                      'Our vision is to be one of the leading dental clinic in the area, expanding our services to reach additional community members. We work to be trusted by patients, a valued partner in the community.',
+                SlideTransition(
+                  position: slideRightAnimation,
+                  child: AboutBox(
+                    title: 'Vision Statement',
+                    subtitle:
+                        'Our vision is to be one of the leading dental clinic in the area, expanding our services to reach additional community members. We work to be trusted by patients, a valued partner in the community.',
+                  ),
                 ),
               ],
             ),
@@ -81,10 +106,13 @@ class AboutUs extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                AboutBox(
-                  title: 'Mission Statement',
-                  subtitle:
-                      'It is our mission to exceed expectations by providing exceptional dental care to our patients and at the same time, building relationships of trust with them.',
+                SlideTransition(
+                  position: slideLeftAnimation,
+                  child: AboutBox(
+                    title: 'Mission Statement',
+                    subtitle:
+                        'It is our mission to exceed expectations by providing exceptional dental care to our patients and at the same time, building relationships of trust with them.',
+                  ),
                 ),
               ],
             ),
