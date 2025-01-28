@@ -110,7 +110,7 @@ class _ListClinicState extends State<ListClinic> {
                           topLeft: Radius.circular(50),
                           topRight: Radius.circular(50)),
                     ),
-                    child: ListAmbulance(),
+                    child: SingleChildScrollView(child: ListAmbulance()),
                   )))
               : SizedBox.shrink()
         ],
@@ -142,8 +142,8 @@ class SingleClinic extends StatelessWidget {
             children: [
               SizedBox(width: 20),
               Container(
-                height: 80,
-                width: 80,
+                height: 75,
+                width: 75,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(width: 1, color: Colors.black),
@@ -157,7 +157,7 @@ class SingleClinic extends StatelessWidget {
                     borderRadius: BorderRadius.circular(100)),
                 child: Image(image: AssetImage('assets/images/logo1.png')),
               ),
-              SizedBox(width: 30),
+              SizedBox(width: 25),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
