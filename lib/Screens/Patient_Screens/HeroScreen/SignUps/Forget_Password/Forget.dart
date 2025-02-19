@@ -1,5 +1,5 @@
 import 'package:ambulance_booking/Resources/resources.dart';
-import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/OTP_Verification/verification.dart';
+import 'package:ambulance_booking/Screens/Patient_Screens/HeroScreen/SignUps/OTP_Verification/Verification.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/Onboarding_Pages/Components/OnBoardingData.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/Custom_TextField.dart';
 import 'package:ambulance_booking/Screens/Patient_Screens/widget/textfield.dart';
