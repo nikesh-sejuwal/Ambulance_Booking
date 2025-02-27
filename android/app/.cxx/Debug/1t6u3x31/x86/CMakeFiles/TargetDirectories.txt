@@ -1,0 +1,2 @@
+/home/scar/Desktop/projects/flutter/intern/main/Ambulance_Booking/android/app/.cxx/Debug/1t6u3x31/x86/CMakeFiles/edit_cache.dir
+/home/scar/Desktop/projects/flutter/intern/main/Ambulance_Booking/android/app/.cxx/Debug/1t6u3x31/x86/CMakeFiles/rebuild_cache.dir
